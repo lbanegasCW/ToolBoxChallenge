@@ -2,5 +2,14 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-# Placeholder image for the client.
-CMD ["node", "-e", "console.log('Client placeholder container')"]
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+ENV HOST=0.0.0.0
+ENV PORT=3000
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

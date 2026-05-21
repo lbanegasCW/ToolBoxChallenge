@@ -2,5 +2,11 @@ FROM node:14-alpine
 
 WORKDIR /app
 
-# Placeholder image for the API.
-CMD ["node", "-e", "console.log('API placeholder container')"]
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+EXPOSE 3001
+
+CMD ["npm", "start"]
