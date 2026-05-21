@@ -1,0 +1,14 @@
+{
+  "name": "fullstack-js-challenge-client",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Client base for the fullstack JS challenge",
+  "engines": {
+    "node": ">=16 <17"
+  },
+  "scripts": {
+    "start": "echo \"Client placeholder: implement app startup later\"",
+    "test": "echo \"Client placeholder: implement tests later\"",
+    "lint": "echo \"Client placeholder: implement linting later\""
+  }
+}
