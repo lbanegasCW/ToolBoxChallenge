@@ -1,4 +1,4 @@
-# Fullstack JS Challenge
+# ToolBox Challenge
 
 Repositorio monorepo para un challenge full stack orientado a evaluación técnica.
 Incluye una API en Node/Express y un frontend en React con Redux, ambos con
