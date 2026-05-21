@@ -1,4 +1,4 @@
-/* global describe it */
+/* global describe it expect */
 
 const React = require('react')
 const { render, screen } = require('@testing-library/react')

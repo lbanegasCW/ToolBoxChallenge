@@ -1,10 +1,24 @@
 {
-  "name": "ToolBox",
+  "name": "toolbox-challenge",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "private": true,
+  "description": "Monorepo for the ToolBox challenge",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   },
-  "private": true
+  "scripts": {
+    "postinstall": "npm install --prefix api && npm install --prefix client",
+    "start:api": "npm --prefix api start",
+    "start:client": "npm --prefix client start",
+    "test:api": "npm --prefix api test",
+    "test:client": "npm --prefix client test",
+    "lint:api": "npm --prefix api run lint",
+    "lint:client": "npm --prefix client run lint",
+    "docs:api": "npm --prefix api run docs",
+    "docs:client": "npm --prefix client run docs",
+    "start": "concurrently \"npm --prefix api start\" \"npm --prefix client start\"",
+    "test": "npm run test:api && npm run test:client",
+    "lint": "npm run lint:api && npm run lint:client",
+    "docs": "npm run docs:api && npm run docs:client"
+  }
 }

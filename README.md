@@ -1,6 +1,6 @@
 # Fullstack JS Challenge
 
-Monorepo para el challenge full stack con backend Node/Express y frontend React.
+Monorepo del ToolBox challenge con backend Express y frontend React.
 
 ## Estructura
 
@@ -15,81 +15,41 @@ Monorepo para el challenge full stack con backend Node/Express y frontend React.
 
 ## Instalación
 
-Instalá cada app por separado:
+Desde la raíz:
 
 ```bash
-cd api
-npm install
-
-cd ../client
 npm install
 ```
 
-## Desarrollo
+Ese comando instala también las dependencias de `api/` y `client/`.
 
-Backend:
+## Scripts raíz
+
+`npm start` levanta `api/` y `client/` al mismo tiempo.
 
 ```bash
-cd api
 npm start
-```
-
-Frontend:
-
-```bash
-cd client
-npm start
-```
-
-## Tests
-
-Backend:
-
-```bash
-cd api
 npm test
-```
-
-Frontend:
-
-```bash
-cd client
-npm test
-```
-
-## Lint
-
-Backend:
-
-```bash
-cd api
 npm run lint
-```
-
-Frontend:
-
-```bash
-cd client
-npm run lint
-```
-
-## Documentación
-
-Generar documentación JSDoc:
-
-```bash
-cd api
-npm run docs
-
-cd ../client
 npm run docs
 ```
 
-La documentación generada se escribe en `api/docs/` y `client/docs/`.
+También podés correr cada paquete desde la raíz:
+
+```bash
+npm run start:api
+npm run start:client
+npm run test:api
+npm run test:client
+npm run lint:api
+npm run lint:client
+npm run docs:api
+npm run docs:client
+```
 
 ## Endpoints
 
-Backend disponible en `http://localhost:3001` por defecto.
+Backend en `http://localhost:3001` por defecto.
 
 - `GET /health`
 - `GET /files/list`
@@ -98,11 +58,11 @@ Backend disponible en `http://localhost:3001` por defecto.
 
 ## Frontend
 
-El cliente consume el backend local por defecto en `http://localhost:3001`.
-Podés sobrescribir la URL con `REACT_APP_API_BASE_URL`.
+El frontend consume `http://localhost:3001` por defecto.
+Puede sobrescribirse con `REACT_APP_API_BASE_URL`.
 
 ## Notas
 
 - El backend tolera fallos por archivo individual en `/files/data`.
-- El frontend muestra loading, error y empty states de forma explícita.
-- El filtro por `fileName` usa la lista devuelta por `/files/list`.
+- El frontend muestra loading, error y empty states.
+- El filtro usa la lista devuelta por `/files/list`.

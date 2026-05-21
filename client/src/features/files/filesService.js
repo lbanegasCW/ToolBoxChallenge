@@ -1,3 +1,5 @@
+/* global fetch */
+
 /**
  * HTTP service for files endpoints.
  *
