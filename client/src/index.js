@@ -13,9 +13,15 @@ require('./index.css')
 
 const React = require('react')
 const ReactDOM = require('react-dom')
+const { Provider } = require('react-redux')
 const App = require('./App')
+const { store } = require('./store')
 
 ReactDOM.render(
-  React.createElement(React.StrictMode, null, React.createElement(App)),
+  React.createElement(
+    Provider,
+    { store: store },
+    React.createElement(React.StrictMode, null, React.createElement(App))
+  ),
   document.getElementById('root')
 )
