@@ -5,6 +5,7 @@
  * - Expose a Bootstrap select populated with the file names returned by the API.
  * - Allow clearing the current selection.
  * - Notify the parent when the selected file changes.
+ * - Degrade gracefully when no file names have been loaded yet.
  *
  * @module features/files/FileNameFilter
  */
@@ -14,6 +15,8 @@ const { Button, Form, InputGroup } = require('react-bootstrap')
 
 /**
  * Renders the file name filter.
+ *
+ * The first option always represents the unfiltered state.
  *
  * @param {{
  *   fileNames: string[],

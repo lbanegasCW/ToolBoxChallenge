@@ -6,6 +6,7 @@
  * - Fetch file names from `GET /files/list`.
  * - Fetch files data from `GET /files/data`.
  * - Fetch a specific file when `fileName` is provided.
+ * - Normalize network and HTTP failures into plain `Error` instances.
  *
  * The service does not depend on Redux; it only performs HTTP requests and
  * returns parsed JSON.
@@ -42,6 +43,8 @@ async function requestJson (path) {
 /**
  * Fetches the list of available file names.
  *
+ * The returned payload mirrors the backend response shape.
+ *
  * @returns {Promise<{files: string[]}>} Files list payload.
  * @throws {Error} Throws when the request fails or returns a non-OK status.
  */
@@ -54,6 +57,7 @@ async function getFileNames () {
  *
  * When `fileName` is provided, the service requests a single file using the
  * query parameter expected by the backend.
+ * The response is the parsed JSON array that the UI flattens later.
  *
  * @param {string} [fileName] Optional file name to request.
  * @returns {Promise<Array>} Parsed files data payload.

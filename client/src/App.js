@@ -3,7 +3,8 @@
  *
  * Responsibilities:
  * - Compose the top navbar and the files page layout.
- * - Keep the current frontend as a simple static shell for the challenge.
+ * - Keep the current frontend focused on the files workflow.
+ * - Avoid embedding data access concerns at the app shell level.
  *
  * @module App
  */
@@ -14,6 +15,8 @@ const FilesPage = require('./features/files/FilesPage')
 
 /**
  * Renders the application shell.
+ *
+ * The component delegates the feature logic to `FilesPage`.
  *
  * @returns {JSX.Element} Root app UI.
  */

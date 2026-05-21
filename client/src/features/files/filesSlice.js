@@ -6,6 +6,7 @@
  * - Track the parsed file data payload.
  * - Track the selected file name used for filtering.
  * - Track loading and error states for async requests.
+ * - Expose async thunks for the backend reads used by the screen.
  *
  * State shape:
  * ```js
@@ -35,6 +36,8 @@ const initialState = {
 /**
  * Fetches the file names from the backend.
  *
+ * This thunk populates the filter options shown by the files screen.
+ *
  * @returns {Promise<{files: string[]}>} Files list payload.
  */
 const fetchFileNames = createAsyncThunk(
@@ -47,6 +50,7 @@ const fetchFileNames = createAsyncThunk(
  *
  * @param {string} [fileName] Optional file name.
  * @returns {Promise<Array>} Parsed files data payload.
+ * @throws {Error} Rejects when the backend request fails.
  */
 const fetchFilesData = createAsyncThunk(
   'files/fetchFilesData',

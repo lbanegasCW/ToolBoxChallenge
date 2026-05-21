@@ -4,6 +4,7 @@
  * Responsibilities:
  * - Display request errors in a visible bootstrap alert.
  * - Keep the message readable without exposing technical details.
+ * - Stay presentation-only and receive error text from the screen layer.
  *
  * @module components/ErrorAlert
  */
@@ -16,6 +17,7 @@ const { Alert } = require('react-bootstrap')
  *
  * @param {{message: string}} props Component props.
  * @returns {JSX.Element} Error alert.
+ * @throws {Error} Does not throw on its own; rendering failures would be React/runtime issues.
  */
 function ErrorAlert (props) {
   return React.createElement(

@@ -4,6 +4,7 @@
  * Responsibilities:
  * - Inform the user when there are no rows to display.
  * - Keep the table area clear and explicit.
+ * - Provide a consistent fallback when filters or data return no rows.
  *
  * @module components/EmptyState
  */
@@ -13,6 +14,8 @@ const { Alert } = require('react-bootstrap')
 
 /**
  * Renders an empty state message.
+ *
+ * The default copy is intentionally generic so callers can reuse the component.
  *
  * @param {{message?: string}} props Component props.
  * @returns {JSX.Element} Empty state UI.

@@ -1,16 +1,18 @@
 # Client
 
-Frontend base del challenge implementado con React 17.
+Frontend del challenge implementado con React 17, Redux y React Bootstrap.
 
 ## Descripción
 
-Esta app React contiene solo el esqueleto visual inicial del challenge.
-Todavía no consume el API real ni incorpora Redux.
+La app muestra la pantalla de archivos del challenge, consume el backend local
+por defecto y deja preparado el flujo para filtrar por `fileName`.
 
 ## Stack
 
 - Node.js 16
 - React 17
+- Redux Toolkit
+- React Redux
 - React Bootstrap
 - Bootstrap CSS
 - Jest
@@ -38,22 +40,69 @@ npm run lint
 npm run docs
 ```
 
-## Layout base
+## API
 
-- Barra superior roja con el texto `React Test App`.
-- Container principal centrado.
-- Espacio reservado para filtro.
-- Espacio reservado para tabla.
+La URL base del backend puede configurarse opcionalmente con
+`REACT_APP_API_BASE_URL`. Si no se define, el cliente usa
+`http://localhost:3001`.
+
+Endpoints consumidos:
+
+- `GET /files/list`
+- `GET /files/data`
+- `GET /files/data?fileName=<fileName>`
+
+## Redux
+
+El estado de archivos vive en `src/features/files/filesSlice.js` y expone:
+
+- `files`
+- `fileNames`
+- `selectedFileName`
+- `loading`
+- `error`
+
+La pantalla usa thunks para cargar el listado y los datos, y acciones simples
+para actualizar o limpiar el filtro.
+
+## Filtro
+
+El selector se alimenta con la respuesta de `GET /files/list`. Al elegir un
+archivo, el frontend actualiza `selectedFileName` y vuelve a solicitar
+`GET /files/data?fileName=<fileName>`. El botón `Clear` limpia el filtro y
+vuelve a cargar todos los archivos.
+
+## Estados
+
+- `loading`: muestra un spinner mientras llegan los datos.
+- `error`: muestra una alerta con el mensaje del error.
+- `empty`: muestra un estado vacío cuando no hay filas para renderizar.
+
+## Decisiones de UI
+
+- Barra superior roja con el título `React Test App`.
+- Container principal limpio y simple.
+- Tabla ordenada con las columnas requeridas por el challenge.
+- Componentes pequeños para loading, error y empty state.
 
 ## Estructura
 
 - `src/App.js`: composición principal de la app.
 - `src/components/AppNavbar.js`: barra superior.
-- `src/features/files/FilesPage.js`: layout principal de archivos.
+- `src/components/LoadingState.js`: spinner de carga.
+- `src/components/ErrorAlert.js`: alerta de error.
+- `src/components/EmptyState.js`: estado vacío.
+- `src/features/files/FilesPage.js`: orquestación de la pantalla.
+- `src/features/files/FilesTable.js`: tabla aplanada.
+- `src/features/files/FileNameFilter.js`: filtro por archivo.
+- `src/features/files/filesSlice.js`: estado y thunks.
+- `src/features/files/filesService.js`: cliente HTTP del frontend.
+- `src/store/index.js`: store Redux.
 
 ## Tests
 
-La suite incluye un test simple de render de `App` con Jest y React Testing Library.
+La suite incluye tests de render de `App` y tests unitarios de la tabla, el
+selector y el slice.
 
 ## Documentación JSDoc
 
@@ -64,9 +113,3 @@ npm run docs
 ```
 
 La salida se genera en `client/docs/`.
-
-## Notas técnicas
-
-- No se consume el API real todavía.
-- No se implementa Redux en esta etapa.
-- El shell visual está preparado para integrar el listado y el filtro más adelante.

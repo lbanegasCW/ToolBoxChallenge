@@ -4,6 +4,7 @@
  * Responsibilities:
  * - Show a centered spinner while data is being fetched.
  * - Keep the loading UI simple and consistent across the app.
+ * - Avoid leaking request details into the visual layer.
  *
  * @module components/LoadingState
  */
@@ -13,6 +14,8 @@ const { Spinner } = require('react-bootstrap')
 
 /**
  * Renders the loading indicator.
+ *
+ * This is used while the files screen is fetching initial or filtered data.
  *
  * @returns {JSX.Element} Loading UI.
  */

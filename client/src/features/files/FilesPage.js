@@ -3,8 +3,10 @@
  *
  * Responsibilities:
  * - Fetch file names and file data on screen load.
+ * - Keep the selected file name synchronized with Redux.
  * - Expose the file selector and clear action.
  * - Render loading, error, empty and data states for the files flow.
+ * - Orchestrate the feature-level components without embedding table logic.
  *
  * @module features/files/FilesPage
  */
@@ -25,6 +27,9 @@ const {
 
 /**
  * Renders the files page.
+ *
+ * The page performs the initial bootstrap fetches once and then reuses the
+ * selected file name to request filtered data.
  *
  * @returns {JSX.Element} Files page UI.
  */

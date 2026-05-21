@@ -5,6 +5,7 @@
  * - Flatten the API response structure into row data.
  * - Render the challenge columns in a Bootstrap table.
  * - Display an empty state when there are no rows to show.
+ * - Ignore files whose `lines` array is empty.
  *
  * @module features/files/FilesTable
  */
@@ -32,6 +33,8 @@ function flattenFilesData (files) {
 
 /**
  * Renders the results table.
+ *
+ * The API response is flattened so each line becomes an individual table row.
  *
  * @param {{files: Array}} props Component props.
  * @returns {JSX.Element} Table or empty state.

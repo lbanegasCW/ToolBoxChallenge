@@ -4,6 +4,7 @@
  * Responsibilities:
  * - Render the red header bar required by the challenge wireframe.
  * - Keep the title visible across the app.
+ * - Provide a stable app-level visual anchor with no business logic.
  *
  * @module components/AppNavbar
  */
@@ -13,6 +14,8 @@ const { Navbar, Container } = require('react-bootstrap')
 
 /**
  * Renders the top navbar.
+ *
+ * The navbar is intentionally static at this stage.
  *
  * @returns {JSX.Element} Navbar element.
  */
