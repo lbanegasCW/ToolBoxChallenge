@@ -7,6 +7,7 @@ describe('GET /health', () => {
     const response = await request(app)
       .get('/health')
       .expect(200)
+      .expect('Content-Type', /json/)
 
     expect(response.body).to.deep.equal({ status: 'ok' })
   })
