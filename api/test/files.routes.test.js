@@ -1,3 +1,5 @@
+/* global describe it before after beforeEach afterEach */
+
 const nock = require('nock')
 const request = require('supertest')
 const { expect } = require('chai')
@@ -8,6 +10,7 @@ const { mockFilesList, mockFileContent } = require('./helpers/externalApiMocks')
 describe('files routes', () => {
   before(() => {
     nock.disableNetConnect()
+    nock.enableNetConnect(/^(127\.0\.0\.1|localhost)(:\d+)?$/)
   })
 
   after(() => {

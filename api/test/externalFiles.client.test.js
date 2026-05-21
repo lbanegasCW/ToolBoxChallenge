@@ -1,3 +1,5 @@
+/* global describe it before after beforeEach afterEach */
+
 const nock = require('nock')
 const { expect } = require('chai')
 
