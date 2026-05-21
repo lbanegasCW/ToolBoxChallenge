@@ -3,6 +3,8 @@
  * @module config/externalApi
  */
 
+require('./loadEnv')
+
 const DEFAULT_BASE_URL = 'https://echo-serv.tbxnet.com/v1/secret'
 const DEFAULT_API_KEY = 'Bearer aSuperSecretKey'
 

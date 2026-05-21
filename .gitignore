@@ -33,6 +33,8 @@ temp/
 .env
 .env.*
 !.env.example
+!api/.env
+!client/.env
 
 # OS and editor files
 .DS_Store

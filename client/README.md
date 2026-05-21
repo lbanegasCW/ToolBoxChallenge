@@ -25,6 +25,15 @@ por defecto y deja preparado el flujo para filtrar por `fileName`.
 - Node.js 16.x
 - npm
 
+## Configuración
+
+- `client/.env` contiene la URL local del backend por defecto.
+- Variables soportadas:
+  - `REACT_APP_API_BASE_URL`
+  - `HOST` (solo para desarrollo en Docker o para ajustar el host del dev server)
+- `client/.env.example` sirve como plantilla.
+- `REACT_APP_API_BASE_URL` es opcional y puede sobrescribirse para otro backend.
+
 ## Instalación
 
 ```bash

@@ -23,6 +23,16 @@ Este módulo expone un backend HTTP que consulta un API externo, descarga CSVs, 
 - Node.js 14.x
 - npm
 
+## Configuración
+
+- `api/.env` contiene los valores locales por defecto.
+- Variables soportadas:
+  - `PORT`
+  - `EXTERNAL_API_BASE_URL`
+  - `EXTERNAL_API_KEY`
+- `api/.env.example` sirve como plantilla.
+- Los defaults siguen en código, por lo que la configuración es opcional.
+
 ## Instalación
 
 ```bash

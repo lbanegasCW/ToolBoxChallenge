@@ -10,6 +10,8 @@
  * @module server
  */
 
+require('./config/loadEnv')
+
 const app = require('./app')
 
 const port = process.env.PORT || 3001
@@ -21,9 +23,7 @@ const port = process.env.PORT || 3001
  * @throws {Error} Propagates startup errors from the Node HTTP server.
  */
 function startServer () {
-  return app.listen(port, () => {
-    console.log(`API listening on port ${port}`)
-  })
+  return app.listen(port)
 }
 
 startServer()

@@ -3,6 +3,8 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+    env_file:
+      - ./api/.env
     ports:
       - '3001:3001'
 
@@ -10,9 +12,10 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    env_file:
+      - ./client/.env
     environment:
-      REACT_APP_API_BASE_URL: http://api:3001
-      HOST: 0.0.0.0
+      REACT_APP_API_BASE_URL: http://localhost:3001
     depends_on:
       - api
     ports:
