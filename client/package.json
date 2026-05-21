@@ -6,9 +6,24 @@
   "engines": {
     "node": ">=16 <17"
   },
+  "main": "src/index.js",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.10.4",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^12.1.5",
+    "jsdoc": "^4.0.4",
+    "standard": "^16.0.4"
+  },
   "scripts": {
-    "start": "echo \"Client placeholder: implement app startup later\"",
-    "test": "echo \"Client placeholder: implement tests later\"",
-    "lint": "echo \"Client placeholder: implement linting later\""
+    "start": "react-scripts start",
+    "test": "react-scripts test --watchAll=false",
+    "lint": "standard \"src/**/*.js\"",
+    "docs": "jsdoc src -r -d docs"
   }
 }
