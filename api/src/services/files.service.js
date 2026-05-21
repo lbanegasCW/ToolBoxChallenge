@@ -1,5 +1,18 @@
 /**
  * Files service for aggregating external CSV data.
+ *
+ * Responsibilities:
+ * - Orchestrate the external client and CSV parser.
+ * - Aggregate all available files for `GET /files/data`.
+ * - Support fetching a single file when `fileName` is provided.
+ * - Tolerate per-file download errors in the bulk flow by skipping only the
+ *   failing file and continuing with the rest.
+ * - Convert upstream failures into controlled service errors for the controller
+ *   layer.
+ *
+ * File-level tolerance is intentional: one failed CSV must not prevent the
+ * rest of the result set from being returned for the general `/files/data`
+ * endpoint.
  * @module services/files
  */
 
@@ -39,7 +52,8 @@ async function fetchAndParseFile (fileName, shouldThrowOnFailure) {
  *
  * @param {string} [fileName] Optional file name to fetch exclusively.
  * @returns {Promise<Array>} Aggregated files data.
- * @throws {Error} Throws a controlled 500 error when the file list cannot be retrieved.
+ * @throws {Error} Throws a controlled 500 error when the file list cannot be
+ * retrieved or when the requested single file cannot be downloaded.
  */
 async function getFilesData (fileName) {
   if (typeof fileName === 'string' && fileName.trim() !== '') {
@@ -68,7 +82,11 @@ async function getFilesData (fileName) {
 /**
  * Gets the files list payload exactly as returned by the external API.
  *
+ * This is used by `GET /files/list` and intentionally returns the upstream
+ * body without shaping it.
+ *
  * @returns {Promise<{files: string[]}>} External files list body.
+ * @throws {Error} Throws a normalized upstream error when the request fails.
  */
 async function getFilesListPayload () {
   return getFilesList()

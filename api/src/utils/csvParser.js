@@ -1,5 +1,20 @@
 /**
  * CSV parser for strict challenge file rows.
+ *
+ * Responsibilities:
+ * - Parse raw CSV text without external CSV dependencies.
+ * - Ignore the header row.
+ * - Ignore empty lines.
+ * - Discard malformed rows instead of throwing, so callers can keep processing
+ *   the remaining content.
+ *
+ * Validation rules for each data row:
+ * - Exactly 4 comma-separated columns are required.
+ * - `file` must be non-empty after trimming.
+ * - `text` must be non-empty after trimming.
+ * - `number` must convert to a finite JavaScript number.
+ * - `hex` must match `/^[a-fA-F0-9]{32}$/`.
+ * - Rows failing any rule are ignored.
  * @module utils/csvParser
  */
 
@@ -37,7 +52,7 @@ function parseLine (line) {
  *
  * Validation rules:
  * - The first non-empty line is treated as the header and ignored.
- * - Empty lines are ignored.
+ * - Empty lines are ignored before and between data rows.
  * - Every data row must have exactly 4 comma-separated columns.
  * - `file` and `text` must be non-empty after trimming.
  * - `number` must be convertible to a finite numeric value.
@@ -47,6 +62,8 @@ function parseLine (line) {
  * @param {string} fileName File name associated with the CSV content.
  * @param {string} csvContent Raw CSV text.
  * @returns {{file: string, lines: Array<{text: string, number: number, hex: string}>}} Parsed CSV payload.
+ * @throws {Error} Does not throw on malformed CSV rows; only invalid input
+ * types from callers would be programmer errors.
  */
 function parseCsvContent (fileName, csvContent) {
   if (!isNonEmptyString(csvContent)) {
